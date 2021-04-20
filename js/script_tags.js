@@ -1,6 +1,10 @@
 const optArticleTagsSelector = '.post-tags .list';
+const optTagsListSelector = '.tags.list';
 
 function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
+
   const articles = document.querySelectorAll(optArticleSelector);
 
   for(let article of articles){
@@ -12,11 +16,24 @@ function generateTags(){
     for(let tag of articleTagsArray){
       const linkHTML = '<li><a href="#tag-'+ tag +'">' + tag + '</a></li>\n';
       newTagsListHTML = newTagsListHTML + linkHTML;
+
+       /* [NEW] check if this link is NOT already in allTags */
+       if(allTags.indexOf(linkHTML) == -1){
+         /* [NEW] add generated code to allTags array */
+         allTags.push(linkHTML);
+       }
+
     }
 
     const tagsList = article.querySelector('div.post-tags ul');
     tagsList.innerHTML = newTagsListHTML;
   }
+
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector('.tags');
+
+     /* [NEW] add html from allTags to tagList */
+     tagList.innerHTML = allTags.join(' ');
 }
 
 generateTags();
