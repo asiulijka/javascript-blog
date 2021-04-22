@@ -1,5 +1,7 @@
 const optArticleTagsSelector = '.post-tags .list';
 const optTagsListSelector = '.tags.list';
+const optCloudClassCount = 5;
+const optCloudClasssPrefix = 'tag-size-';
 
 function calculateTagsParams(tags){
   const params = {max: 0, min: 999999};
@@ -16,10 +18,19 @@ function calculateTagsParams(tags){
     }
   }
 
-
-
   return params;
 }
+
+
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+
+  return (optCloudClasssPrefix + classNumber);
+}
+
 
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
@@ -61,15 +72,27 @@ function generateTags(){
     console.log('tagsParams:', tagsParams);
     let allTagsHTML = '';
 
-    /* [NEW] START LOOP: for each tag in allTags: */
-    for(let tag in allTags){
-      /* [NEW] generate code of a link and add it to allTagsHTML */
-      const leftTag = tag + ' (' + allTags[tag] + ') ';
-      const linkHTML = '<li><a href="#tag-'+ tag +'">' + leftTag + '</a></li>\n';
-      allTagsHTML = allTagsHTML + linkHTML;
 
-    }
+// 22.04 changes to include function calculateTagClass
+    /* [NEW] START LOOP: for each tag in allTags: */
+    // for(let tag in allTags){
+    //   /* [NEW] generate code of a link and add it to allTagsHTML */
+    //   const leftTag = tag + ' (' + allTags[tag] + ') ';
+    //   const linkHTML = '<li><a href="#tag-'+ tag +'">' + leftTag + '</a></li>\n';
+    //   allTagsHTML = allTagsHTML + linkHTML;
+    // }
 /* [NEW] END LOOP: for each tag in allTags: */
+
+for(let tag in allTags){
+  // const leftTag = tag + ' (' + allTags[tag] + ') ';
+
+// const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams);
+  const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag +'">' + tag + '</a></li>\n';
+  console.log('tagLinkHTML:', tagLinkHTML);
+
+    allTagsHTML += tagLinkHTML;
+
+}
 
 
     /*[NEW] add HTML from allTagsHTML to tagList */
