@@ -26,7 +26,6 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
 
-// generateTitleLinks('[data-tags~="' + tag + '"]');
 function generateTitleLinks(customSelector='') {
   const titleList = document.querySelector(optTitleListSelector);
   titleList.innerHTML = '';
