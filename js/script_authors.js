@@ -30,14 +30,27 @@ function generateAuthors(){
 
   const authorsList = document.querySelector('.authors');
 
-  let allAuthorsHTML = '';
+  // let allAuthorsHTML = '';
+  const allAuthorsData = {authorsList: []};
+
 
   for(let articleAuthor in allAuthors){
     const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + ' (' + allAuthors[articleAuthor] + ')</a></li>\n';
-    allAuthorsHTML += authorLinkHTML;
+    // allAuthorsHTML += authorLinkHTML;
+
+    allAuthorsData.authorsList.push({
+      author: articleAuthor,
+      count: allAuthors[articleAuthor],
+      // className: calculateAuthorClass(allAuthors[articleAuthor], tagsParams)
+    });
+
   }
 
-  authorsList.innerHTML = allAuthorsHTML;
+  // authorsList.innerHTML = allAuthorsHTML;
+authorsList.innerHTML = templates.authorsListLink(allAuthorsData);
+console.log(allAuthorsData);
+
+
 }
 
 generateAuthors();

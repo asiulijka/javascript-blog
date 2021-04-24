@@ -58,14 +58,26 @@ function generateTags(){
 
     const tagList = document.querySelector('.tags');
     const tagsParams = calculateTagsParams(allTags);
-    let allTagsHTML = '';
+    // let allTagsHTML = '';
+
+    const allTagsData = {tags: []};
+
 
     for(let tag in allTags){
       const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag +'">' + tag + '</a></li>\n';
-      allTagsHTML += tagLinkHTML;
+      // allTagsHTML += tagLinkHTML;
+
+      allTagsData.tags.push({
+        tag: tag,
+        count: allTags[tag],
+        className: calculateTagClass(allTags[tag], tagsParams)
+      });
+
     }
 
-    tagList.innerHTML = allTagsHTML;
+    // tagList.innerHTML = allTagsHTML;
+    tagList.innerHTML = templates.tagCloudLink(allTagsData);
+    // console.log(allTagsData);
 }
 
 generateTags();
