@@ -1,3 +1,12 @@
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
+}
+
+
+
+
 const titleClickHandler = function(event){
   event.preventDefault();
   const clickedElement = this;
@@ -37,7 +46,11 @@ function generateTitleLinks(customSelector='') {
   for (let article of articles){
     const articleId = article.getAttribute('id');
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+
+    // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
+
     html = html + linkHTML;
   }
 

@@ -38,7 +38,12 @@ function generateTags(){
     const articleTagsArray = articleTags.split(' ');
 
     for(let tag of articleTagsArray){
-      const linkHTML = '<li><a href="#tag-'+ tag +'">' + tag + '</a></li>\n';
+      // const linkHTML = '<li><a href="#tag-'+ tag +'">' + tag + '</a></li>\n';
+      const linkHTMLData = {jsTag: tag};
+      const linkHTML = templates.tagLink(linkHTMLData);
+
+
+
       newTagsListHTML = newTagsListHTML + linkHTML;
 
       if(!allTags[tag]){

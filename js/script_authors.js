@@ -11,7 +11,11 @@ function generateAuthors(){
     const authorsWrapper = article.querySelector(optArticleAuthorSelector);
     let newAuthorListHTML = '';
     const articleAuthor = article.getAttribute('data-author');
-    const linkHTML = '<li><a href="#author-'+ articleAuthor +'">' + articleAuthor + '</a></li>';
+    // const linkHTML = '<li><a href="#author-'+ articleAuthor +'">' + articleAuthor + '</a></li>';
+
+    const linkHTMLData = {author: articleAuthor};
+    const linkHTML = templates.authorLink(linkHTMLData);
+
     newAuthorListHTML = newAuthorListHTML + linkHTML;
 
    if(!allAuthors[articleAuthor]){
