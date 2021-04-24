@@ -7,8 +7,6 @@ const templates = {
 }
 
 
-
-
 const titleClickHandler = function(event){
   event.preventDefault();
   const clickedElement = this;
@@ -49,7 +47,6 @@ function generateTitleLinks(customSelector='') {
     const articleId = article.getAttribute('id');
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
-    // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     const linkHTMLData = {id: articleId, title: articleTitle};
     const linkHTML = templates.articleLink(linkHTMLData);
 

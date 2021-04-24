@@ -187,52 +187,32 @@
         </main>
       </div>
     </div>
-
-
+    
 
     <script id="template-article-link" type="text/x-handlebars-template">
       <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
     </script>
 
-  <!-- //  '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>'; -->
-
-
     <script id="template-tag-link" type="text/x-handlebars-template">
       <li><a href="#tag-{{ jsTag }}"><span>{{ jsTag }}</span></a></li>
     </script>
 
-   <!-- '<li><a href="#tag-'+ tag +'">' + tag + '</a></li>\n'; -->
-
-   <script id="template-author-link" type="text/x-handlebars-template">
+    <script id="template-author-link" type="text/x-handlebars-template">
      <li><a href="#author-{{ author }}"><span>{{ author }}</span></a></li>
-   </script>
+    </script>
 
-<!-- '<li><a href="#author-'+ articleAuthor +'">' + articleAuthor + '</a></li>'; -->
+    <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+      {{#each tags}}
+      <li><a class="{{ className }}" href="#tag-{{ tag }}"><span>{{ tag }}</span></a></li>
+      {{/each}}
+    </script>
 
-
-  <script id="template-tag-cloud-link" type="text/x-handlebars-template">
-    {{#each tags}}
-    <li><a class="{{ className }}" href="#tag-{{ tag }}"><span>{{ tag }}</span></a></li>
-    {{/each}}
-  </script>
-
-<!-- '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag +'">' + tag + '</a></li>\n'
-count: allTags[tag],
-className: calculateTagClass(allTags[tag], tagsParams) -->
-
-<script id="template-authors-list-link" type="text/x-handlebars-template">
-  {{#each authorsList}}
-  <!-- <li>{{ author }}</li> -->
-  <li><a href="#author-{{ author }}"><span>{{ author }}  ( {{ count }} )</span></a></li>
-  {{/each}}
-</script>
-
-
-<!-- '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + ' (' + allAuthors[articleAuthor] + ')</a></li>\n';
-article: articleAuthor,
-count: allAuthors[articleAuthor],
-className: generateAuthors() -->
-
+    <script id="template-authors-list-link" type="text/x-handlebars-template">
+      {{#each authorsList}}
+      <!-- <li>{{ author }}</li> -->
+      <li><a href="#author-{{ author }}"><span>{{ author }}  ( {{ count }} )</span></a></li>
+      {{/each}}
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="js/script_titles.js"></script>
